@@ -3,6 +3,7 @@ package com.flashcards.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.flashcards.backend.entities.Statistic;
 import com.flashcards.backend.service.ChallengeService;
 import com.flashcards.backend.entities.Challenge;
 import com.flashcards.backend.service.LessonService;
@@ -50,6 +51,7 @@ public class ChallangeControler
     {
         challengeService.delete(id);
     }
+
     //creating post mapping that post the challenge detail in the database
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/challenge")
@@ -69,6 +71,14 @@ public class ChallangeControler
         challenge.setQuestion(question);
         challengeService.saveOrUpdate(challenge);
         return challenge.getId();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/challenge/mostmissed/{userName}")
+    private List<Challenge> getMostmissedForUser(@PathVariable("userName") String userName) {
+        List<Challenge> result = challengeService.getMostMissed4User(userName);
+
+        return result;
     }
 
 }

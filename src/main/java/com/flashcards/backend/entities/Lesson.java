@@ -35,8 +35,7 @@ public class Lesson {
     public void setLanguage(String language) {
         this.language = language;
     }
-
-
+    
     public String getTitle() {
         return title;
     }
@@ -44,6 +43,4 @@ public class Lesson {
     public void setTitle(String title) {
         this.title = title;
     }
-
-
 }

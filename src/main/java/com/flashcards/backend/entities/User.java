@@ -1,5 +1,6 @@
 package com.flashcards.backend.entities;
 import javax.persistence.*;
+import java.util.Set;
 
 //mark class as an Entity
 @Entity
@@ -9,10 +10,15 @@ public class User
 {
     //mark id as primary key
     @Id
-//defining id as column name
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private int id;
     //defining name as column name
+
+    @Column
+    private
+    String name;
+    
     @Column
     private String language;
     //defining age as column name
@@ -30,7 +36,10 @@ public class User
 
     @Column
     private String secretAnswer;
-    
+
+    @OneToMany(mappedBy = "user")
+    private Set<Statistic> statistic;
+
     public int getId()
     {
         return id;
@@ -63,4 +72,12 @@ public class User
     {
         this.email = email;
     }
-}  
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

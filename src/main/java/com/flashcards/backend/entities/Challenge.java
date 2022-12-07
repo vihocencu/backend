@@ -1,5 +1,8 @@
 package com.flashcards.backend.entities;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
+import java.util.Set;
 
 //mark class as an Entity
 @Entity
@@ -20,10 +23,25 @@ public class Challenge
     @Column
     private String answer;
     
+//    @ManyToOne
+//    @JoinColumn(name="lesson_id", nullable=false)
+//    private Lesson lesson;
+
+    @OneToMany(mappedBy = "challenge")
+    private Set<Statistic> statistic;
+
     @ManyToOne
-    @JoinColumn(name="lesson_id", nullable=false)
+    @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+    
     public String getQuestion() {
         return question;
     }
@@ -40,13 +58,13 @@ public class Challenge
         this.answer = answer;
     }
 
-    public Lesson getLesson() {
-        return lesson;
-    }
+//    public Lesson getLesson() {
+//        return lesson;
+//    }
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
+//    public void setLesson(Lesson lesson) {
+//        this.lesson = lesson;
+//    }
 
     public int getId() {
         return id;

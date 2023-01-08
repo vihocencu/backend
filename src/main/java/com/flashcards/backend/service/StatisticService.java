@@ -33,7 +33,7 @@ public class StatisticService
     }
     public void saveOrUpdate(Statistic statistic)
     {
-        statisticRepository.save(statistic);
+        statistic.setDate(Calendar.getInstance().getTimeInMillis());statisticRepository.save(statistic);
     }
     //deleting a specific record
     public void delete(Long id)

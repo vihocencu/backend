@@ -1,6 +1,7 @@
 package com.flashcards.backend.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 //defining class name as Table name
@@ -23,6 +24,9 @@ public class Statistic
 
     @Column
     private int correct;
+
+    @Column
+    private Long date;
 
     @Column
     private int hint;
@@ -80,5 +84,13 @@ public class Statistic
 
     public void setCorrect(int richtig) {
         this.correct = richtig;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
     }
 }

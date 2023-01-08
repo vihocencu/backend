@@ -59,7 +59,6 @@ public class ChallengeService
             List<Statistic> result =    new ArrayList<>();
 
             statisticRepository.findAll().forEach(st -> {if (st.getUser()!=null && st.getUser().getName().equals(user)&&st.getCorrect()==0) result.add(st);});
-
             Map<Challenge, Long> mossedMissed =
                     result.stream().collect(Collectors.groupingBy(Statistic::getChallenge, Collectors.counting()))
                             .entrySet()
@@ -69,7 +68,7 @@ public class ChallengeService
 
             List<Statistic> res = new ArrayList<>();
 
-            return mossedMissed.keySet().stream().collect(Collectors.toList());
+            return mossedMissed.keySet().stream().limit(10).collect(Collectors.toList());
         }
 
     }
